@@ -1,326 +1,246 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For My Akka ❤️</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-
-<div class="welcome-page">
-
-    <h1>Hey Akka ❤️</h1>
-
-    <p class="message">
-        I made a little surprise just for you.
-    </p>
-
-    <div class="buttons">
-
-        <button class="yes-btn"
-        onclick="window.location.href='countdown.html'">
-            Open
-        </button>
-
-        <button class="no-btn"
-        onclick="showMessage()">
-            Not Now
-        </button>
-
-    </div>
-
-    <p id="reply"></p>
-
-</div>
-
-<script>
-function showMessage(){
-document.getElementById("reply").innerHTML =
-"Aww Akka 🥺... I'll be here whenever you're ready. ❤️";
-}
-</script>
-
-</body>
-</html>
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Birthday Countdown</title>
+<title>Akka's Birthday</title>
 
-<link rel="stylesheet" href="style.css">
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Georgia, serif;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #fff8f2, #f9e8e8, #f8f1e8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.page {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.8s ease;
+}
+
+.hidden {
+    display: none;
+}
+
+/* PAGE 1 */
+
+.welcome-box {
+    width: 85%;
+    max-width: 520px;
+    padding: 65px 30px;
+    background: rgba(255,255,255,0.65);
+    border-radius: 30px;
+    text-align: center;
+    box-shadow: 0 15px 45px rgba(120,80,80,0.15);
+    backdrop-filter: blur(10px);
+}
+
+.heart {
+    font-size: 55px;
+    margin-bottom: 30px;
+}
+
+.enter-btn {
+    border: none;
+    padding: 15px 42px;
+    border-radius: 30px;
+    background: #d89a9a;
+    color: white;
+    font-size: 17px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.enter-btn:hover {
+    transform: scale(1.08);
+    background: #c98585;
+}
+
+/* PAGE 2 */
+
+.countdown-box {
+    width: 90%;
+    max-width: 700px;
+    padding: 45px 25px;
+    background: rgba(255,255,255,0.72);
+    border-radius: 35px;
+    text-align: center;
+    box-shadow: 0 20px 55px rgba(120,80,80,0.18);
+    backdrop-filter: blur(12px);
+}
+
+.birthday-icon {
+    font-size: 50px;
+    margin-bottom: 25px;
+}
+
+.countdown {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+}
+
+.time {
+    background: rgba(255,255,255,0.8);
+    border-radius: 20px;
+    padding: 20px 8px;
+    box-shadow: 0 8px 20px rgba(100,70,70,0.1);
+}
+
+.number {
+    display: block;
+    font-size: 32px;
+    color: #b97878;
+    font-weight: bold;
+}
+
+.label {
+    font-size: 13px;
+    color: #8c7070;
+    margin-top: 6px;
+    display: block;
+}
+
+@media(max-width: 500px) {
+    .countdown-box {
+        padding: 35px 15px;
+    }
+
+    .countdown {
+        gap: 8px;
+    }
+
+    .time {
+        padding: 16px 5px;
+    }
+
+    .number {
+        font-size: 24px;
+    }
+
+    .label {
+        font-size: 11px;
+    }
+}
+</style>
 </head>
+
 <body>
 
-<div class="countdown-page">
+<!-- PAGE 1 -->
 
-    <div class="countdown-box">
+<div class="page" id="page1">
 
-        <h1>Birthday Countdown</h1>
+    <div class="welcome-box">
 
-        <h2>For My Akka ❤️</h2>
+        <div class="heart">♡</div>
 
-        <div class="time">
-
-            <div class="card">
-                <span id="days">00</span>
-                <small>Days</small>
-            </div>
-
-            <div class="card">
-                <span id="hours">00</span>
-                <small>Hours</small>
-            </div>
-
-            <div class="card">
-                <span id="minutes">00</span>
-                <small>Minutes</small>
-            </div>
-
-            <div class="card">
-                <span id="seconds">00</span>
-                <small>Seconds</small>
-            </div>
-
-        </div>
-
-        <p class="date">
-            March 10 ✨
-        </p>
-
-        <p class="quote">
-            Every second brings us closer to your special day.
-        </p>
+        <button class="enter-btn" onclick="openBirthday()">
+            Open
+        </button>
 
     </div>
 
 </div>
 
-<script src="script.js"></script>
 
-</body>
-</html>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Poppins',sans-serif;
-}
+<!-- PAGE 2 -->
 
-body{
-    min-height:100vh;
-    background:linear-gradient(135deg,#fffdf8,#f8efe9,#fdf7f3);
-    display:flex;
-    justify-content:center;
-    align-items:center;
-}
+<div class="page hidden" id="page2">
 
-/* Welcome Page */
+    <div class="countdown-box">
 
-.welcome-page{
-    text-align:center;
-    animation:fade 1s ease;
-}
+        <div class="birthday-icon">🎂</div>
 
-.welcome-page h1{
-    font-size:50px;
-    color:#5b4b4b;
-    margin-bottom:20px;
-}
+        <div class="countdown">
 
-.message{
-    font-size:20px;
-    color:#777;
-    margin-bottom:40px;
-}
+            <div class="time">
+                <span class="number" id="days">00</span>
+                <span class="label">DAYS</span>
+            </div>
 
-.buttons{
-    display:flex;
-    gap:20px;
-    justify-content:center;
-}
+            <div class="time">
+                <span class="number" id="hours">00</span>
+                <span class="label">HOURS</span>
+            </div>
 
-button{
-    border:none;
-    padding:14px 38px;
-    border-radius:40px;
-    cursor:pointer;
-    font-size:18px;
-    transition:.3s;
-}
+            <div class="time">
+                <span class="number" id="minutes">00</span>
+                <span class="label">MINUTES</span>
+            </div>
 
-.yes-btn{
-    background:#e8b4b8;
-    color:white;
-}
+            <div class="time">
+                <span class="number" id="seconds">00</span>
+                <span class="label">SECONDS</span>
+            </div>
 
-.no-btn{
-    background:white;
-    color:#666;
-    box-shadow:0 5px 15px rgba(0,0,0,.08);
-}
+        </div>
 
-button:hover{
-    transform:translateY(-3px);
-}
+    </div>
 
-#reply{
-    margin-top:35px;
-    color:#777;
-    font-size:18px;
-}
+</div>
 
-/* Countdown Page */
 
-.countdown-page{
-    width:100%;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    padding:20px;
-}
+<script>
 
-.countdown-box{
-    width:800px;
-    max-width:95%;
-    background:rgba(255,255,255,.65);
-    backdrop-filter:blur(12px);
-    border-radius:30px;
-    padding:50px;
-    text-align:center;
-    box-shadow:0 15px 35px rgba(0,0,0,.08);
-    animation:fade 1s ease;
-}
-
-.countdown-box h1{
-    color:#5b4b4b;
-    font-size:42px;
-    margin-bottom:10px;
-}
-
-.countdown-box h2{
-    color:#8a6d6d;
-    margin-bottom:45px;
-    font-weight:500;
-}
-
-.time{
-    display:flex;
-    justify-content:center;
-    gap:25px;
-    flex-wrap:wrap;
-}
-
-.card{
-    width:140px;
-    height:140px;
-    background:white;
-    border-radius:22px;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    box-shadow:0 8px 25px rgba(0,0,0,.08);
-}
-
-.card span{
-    font-size:48px;
-    font-weight:bold;
-    color:#5b4b4b;
-}
-
-.card small{
-    margin-top:8px;
-    color:#888;
-    font-size:16px;
-}
-
-.date{
-    margin-top:40px;
-    font-size:24px;
-    color:#8a6d6d;
-}
-
-.quote{
-    margin-top:15px;
-    color:#777;
-    font-size:18px;
-    line-height:1.6;
-}
-
-@keyframes fade{
-    from{
-        opacity:0;
-        transform:translateY(20px);
-    }
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
-}
-
-@media(max-width:768px){
-
-.welcome-page h1{
-    font-size:38px;
-}
-
-.message{
-    font-size:18px;
-}
-
-.countdown-box{
-    padding:35px 20px;
-}
-
-.countdown-box h1{
-    font-size:32px;
-}
-
-.card{
-    width:120px;
-    height:120px;
-}
-
-.card span{
-    font-size:38px;
-}
-
-}
-function getNextBirthday() {
-    const now = new Date();
-
-    // Birthday: March 10
-    let birthday = new Date(now.getFullYear(), 2, 10, 0, 0, 0);
-
-    // If birthday has passed this year, use next year
-    if (now > birthday) {
-        birthday = new Date(now.getFullYear() + 1, 2, 10, 0, 0, 0);
-    }
-
-    return birthday;
+function openBirthday() {
+    document.getElementById("page1").classList.add("hidden");
+    document.getElementById("page2").classList.remove("hidden");
 }
 
 function updateCountdown() {
 
-    const now = new Date().getTime();
-    const target = getNextBirthday().getTime();
+    const now = new Date();
 
-    const difference = target - now;
+    let year = now.getFullYear();
+
+    // March 10 of the current year
+    let birthday = new Date(year, 2, 10, 0, 0, 0);
+
+    // If March 10 has already passed, use next year
+    if (now >= birthday) {
+        birthday = new Date(year + 1, 2, 10, 0, 0, 0);
+    }
+
+    const difference = birthday - now;
 
     const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+    const hours = Math.floor((difference / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((difference / (1000 * 60)) % 60);
+    const seconds = Math.floor((difference / 1000) % 60);
 
-    document.getElementById("days").innerHTML = String(days).padStart(2, "0");
-    document.getElementById("hours").innerHTML = String(hours).padStart(2, "0");
-    document.getElementById("minutes").innerHTML = String(minutes).padStart(2, "0");
-    document.getElementById("seconds").innerHTML = String(seconds).padStart(2, "0");
+    document.getElementById("days").textContent =
+        String(days).padStart(2, "0");
+
+    document.getElementById("hours").textContent =
+        String(hours).padStart(2, "0");
+
+    document.getElementById("minutes").textContent =
+        String(minutes).padStart(2, "0");
+
+    document.getElementById("seconds").textContent =
+        String(seconds).padStart(2, "0");
 }
 
 updateCountdown();
 setInterval(updateCountdown, 1000);
 
+</script>
+
+</body>
+</html>
+```
